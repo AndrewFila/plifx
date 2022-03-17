@@ -16,9 +16,8 @@ class MyWindow(QWidget):
         self.width = 500
         self.height = 500
         self.initUI()
-    
+
     def initUI(self):
-        
         self.setWindowTitle("Lifx GUI")
         self.setGeometry(self.x, self.y, self.width, self.height)
 
@@ -28,7 +27,6 @@ class MyWindow(QWidget):
         self.color_dial.setMinimum(0)
         self.color_dial.setMaximum(359)
         self.color_dial.valueChanged.connect(self.print_dial_value)
-        
         self.color_label = QLabel(self)
         self.color_label.setText(str(self.color_dial.value()))
 
@@ -45,9 +43,9 @@ class MyWindow(QWidget):
 
 
         self.toggle_btn = QPushButton(self)
-        self.toggle_btn.setText("on/off")    
+        self.toggle_btn.setText("on/off")
         self.toggle_btn.clicked.connect(lambda: lifxUtil.toggle(btoken))
-        
+
         self.apply_btn = QPushButton(self)
         self.apply_btn.setText("apply")
         self.apply_btn.clicked.connect(lambda: lifxUtil.setColor(btoken, self.color_dial.value(), self.hue_slider.value()+1, self.brightness_slider.value()+1))
@@ -62,7 +60,7 @@ class MyWindow(QWidget):
         self.layout.addWidget(self.apply_btn, 2, 1)
 
         self.setLayout(self.layout)
-    
+
     def print_dial_value(self):
         self.color_label.setText(str(self.color_dial.value()))
     def print_slider_value(self):
